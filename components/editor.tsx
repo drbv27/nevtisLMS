@@ -14,6 +14,24 @@ export const Editor = ({
     onChange,
     value,
 }: EditorProps) => {
+    const modules = {
+        toolbar: [
+          [ { font: [] }],
+          [{ size: [] }],
+          ['blockquote', 'code-block'],
+          ['bold', 'italic', 'underline', 'blockquote'],
+          [
+            { list: 'ordered' },
+            { list: 'bullet' },
+          ],
+          ['link', 'image'],
+          ['clean'],
+        ],
+        clipboard: {
+          // toggle to add extra line breaks when pasting HTML:
+          matchVisual: false,
+        },
+      }
     const ReactQuill = useMemo(() => dynamic(() => import("react-quill"), { ssr: false }), [])
 
     return (
@@ -22,6 +40,7 @@ export const Editor = ({
                 theme="snow"
                 value={value}
                 onChange={onChange}
+                modules={modules}
             />
         </div>
     );
